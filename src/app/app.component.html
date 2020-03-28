@@ -1,4 +1,21 @@
-<div class="flex-container">
+<!--<div class="flex-container">
   <app-canvas class="canvas"></app-canvas>
-  <div class="toolbar">Toolbar</div>
-</div>
+  <div class="toolbar">
+    <h2>Toolbar</h2>
+    <div>
+      <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+    </div>
+  </div>
+</div>-->
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <h2>Toolbar</h2>
+    <div>
+      <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="canvas">
+    <app-canvas></app-canvas>
+  </mat-sidenav-content>
+</mat-sidenav-container>
