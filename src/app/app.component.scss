@@ -1,0 +1,18 @@
+.flex-container {
+  display: flex;
+  height: 98vh;
+  background-color: #f1f1f1;
+}
+
+.flex-container > div {
+  background-color: DodgerBlue;
+  color: white;
+  margin: 0 10px;
+  text-align: center;
+}
+.toolbar {
+  width: 25%;
+}
+.canvas {
+  width: 75%;
+}
