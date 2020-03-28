@@ -9,6 +9,7 @@ import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'paint-app';
+  lineWidth = 10;
   constructor() {
   }
 }

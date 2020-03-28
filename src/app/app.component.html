@@ -10,12 +10,20 @@
 
 <mat-sidenav-container class="example-container">
   <mat-sidenav mode="side" opened>
-    <h2>Toolbar</h2>
-    <div>
-      <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+    <div class="toolbar">
+      <h2>Toolbar</h2>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Line Width</mat-card-title>
+          <mat-card-subtitle>{{lineWidth}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-slider class="line-width-slider" min="1" max="100" step="1" [(value)]="lineWidth"></mat-slider>
+        </mat-card-content>
+      </mat-card>
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="canvas">
-    <app-canvas></app-canvas>
+    <app-canvas [lineWidth]="lineWidth"></app-canvas>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,5 +1,5 @@
 import {
-  Component, Input, ElementRef, AfterViewInit, ViewChild, OnInit
+  Component, Input, ElementRef, AfterViewInit, ViewChild, OnInit, SimpleChanges
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators';
@@ -15,6 +15,8 @@ export class CanvasComponent implements AfterViewInit {
 
   @Input() public width = 400;
   @Input() public height = 400;
+  // @Input() public lineWidth = 3;
+  @Input('lineWidth') lineWidth: number;
 
   private cx: CanvasRenderingContext2D;
 
@@ -27,11 +29,28 @@ export class CanvasComponent implements AfterViewInit {
     canvasEl.width = this.width;
     canvasEl.height = this.height;
 
-    this.cx.lineWidth = 3;
+    this.cx.lineWidth = this.lineWidth;
     this.cx.lineCap = 'round';
     this.cx.strokeStyle = '#000';
 
     this.captureEvents(canvasEl);
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        if (propName === 'lineWidth') {
+          const chng = changes[propName];
+          console.log(chng);
+          if (chng.currentValue && !chng.firstChange) {
+            const cur = JSON.stringify(chng.currentValue);
+            const prev = JSON.stringify(chng.previousValue);
+            this.cx.lineWidth = chng.currentValue ? chng.currentValue : this.lineWidth;
+            console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+          }
+        }
+      }
+    }
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
