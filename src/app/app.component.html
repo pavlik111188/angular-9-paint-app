@@ -14,16 +14,39 @@
       <h2>Toolbar</h2>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Line Width</mat-card-title>
-          <mat-card-subtitle>{{lineWidth}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-button-toggle-group #group="matButtonToggleGroup" value="gesture">
+            <mat-button-toggle value="gesture" aria-label="Text align left" (change)="figureTypeChange($event)">
+              <mat-icon>gesture</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="remove" aria-label="Text align left" (change)="figureTypeChange($event)">
+              <mat-icon>remove</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="crop_square" aria-label="Text align center" (change)="figureTypeChange($event)">
+              <mat-icon>crop_square</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="change_history" aria-label="Text align right" (change)="figureTypeChange($event)">
+              <mat-icon>change_history</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="panorama_fish_eye" aria-label="Text align justify" (change)="figureTypeChange($event)">
+              <mat-icon>panorama_fish_eye</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <!--mat-card-subtitle>{{lineWidth}}</mat-card-subtitle-->
         </mat-card-header>
         <mat-card-content>
           <mat-slider class="line-width-slider" min="1" max="100" step="1" [(value)]="lineWidth"></mat-slider>
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="example-selected-value">Selected value: {{group.value}}</div>
   </mat-sidenav>
   <mat-sidenav-content class="canvas">
-    <app-canvas [lineWidth]="lineWidth"></app-canvas>
+    <app-canvas [lineWidth]="lineWidth" [figureType]="figureType"></app-canvas>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -10,6 +10,13 @@ import {pairwise, switchMap, takeUntil} from 'rxjs/operators';
 export class AppComponent {
   title = 'paint-app';
   lineWidth = 10;
+  figureType = 'gesture';
+
   constructor() {
+  }
+
+  figureTypeChange(event: any) {
+    console.log(event);
+    this.figureType = event.value;
   }
 }
